@@ -25,3 +25,7 @@ exchange-service. Which is one of the endpoints it exposes.
 On a different topic, I tried to do local development using docker containers to
 be closer to the production environment, but failed. I think for now I will
 stick with the normal dev servers options.
+
+I added a call to [freecurrencyapi](https://freecurrencyapi.com/) inside the
+`exchange-service` to fetch exchange rates for currencies. It was very easy to
+integrate and has a generous free tier.
