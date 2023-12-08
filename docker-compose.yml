@@ -2,6 +2,7 @@ version: '3'
 services:
   exchange-service:
     build: ./services/exchange
+    env_file: ./services/exchange/.env
 
   web-client:
     build: ./clients/web

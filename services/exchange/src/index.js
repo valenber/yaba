@@ -1,6 +1,8 @@
 "use strict";
+import Hapi from "@hapi/hapi";
+import Freecurrencyapi from "@everapi/freecurrencyapi-js";
 
-const Hapi = require("@hapi/hapi");
+const currencyAPI = new Freecurrencyapi(process.env.FC_API_KEY);
 
 const init = async () => {
   const server = Hapi.server({
@@ -11,8 +13,12 @@ const init = async () => {
   server.route({
     method: "GET",
     path: "/rate",
-    handler: () => {
-      return "Hello from the baby server!";
+    handler: async () => {
+      const response = await currencyAPI.latest({
+        base_currency: "EUR",
+        currencies: ["USD", "RUB", "GBP", "ILS"],
+      });
+      return response;
     },
   });
 
