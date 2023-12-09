@@ -12,7 +12,7 @@ const init = async () => {
 
   server.route({
     method: "GET",
-    path: "/rate",
+    path: "/rates",
     handler: async () => {
       const response = await currencyAPI.latest({
         base_currency: "EUR",

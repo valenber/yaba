@@ -7,7 +7,22 @@
   </head>
   <body>
     <h1>Web Client</h1>
-    <pre id="content"></pre>
+    <pre id="rates"></pre>
+
+    <form id="curencyConverter">
+      <label for="sourceAmount">From EUR</label>
+      <input type="number" id="sourceAmount" />
+
+      <label for="targetCurrency">To</label>
+      <select id="targetCurrency">
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+        <option value="GBP">GBP</option>
+      </select>
+
+      <input type="number" step="0.01" id="targetAmount" disabled />
+    </form>
+
     <script type="application/javascript" src="./main.js"></script>
   </body>
 </html>
