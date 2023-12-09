@@ -29,3 +29,18 @@ stick with the normal dev servers options.
 I added a call to [freecurrencyapi](https://freecurrencyapi.com/) inside the
 `exchange-service` to fetch exchange rates for currencies. It was very easy to
 integrate and has a generous free tier.
+
+## 09/12/2023
+
+I'm going to add authentication to the app. It seems that the most sensible
+approach is to protect the whole app at the ingress level. It will take care of
+all the current services and the ones we may implement in the future.
+To do this the nginx that we use as reverse proxy\[¹\], before forwarding
+requests to corect service has to consult the new `auth` service, that will
+determine if the request is authenticated or not. When ingress receives OK from
+the `auth` service in will forward the request following the rules in
+nginx.conf, otherwise it will return 404 for endpoints and redirect to login for
+client requests.
+
+\[¹\] This just means that it controls access from the Internet to a computer,
+rather than from computer to the Internet, the way a direct proxy does.
