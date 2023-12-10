@@ -35,12 +35,34 @@ integrate and has a generous free tier.
 I'm going to add authentication to the app. It seems that the most sensible
 approach is to protect the whole app at the ingress level. It will take care of
 all the current services and the ones we may implement in the future.
-To do this the nginx that we use as reverse proxy\[¹\], before forwarding
+To do this the nginx that we use as reverse proxy\[¹\](# note 1) before forwarding
 requests to corect service has to consult the new `auth` service, that will
 determine if the request is authenticated or not. When ingress receives OK from
 the `auth` service in will forward the request following the rules in
 nginx.conf, otherwise it will return 404 for endpoints and redirect to login for
 client requests.
+
+I will try to implement auth via JSON Web Token (JWT). It is a web standard that
+allows `auth` service to encode user data as a long string using a
+random key known only to the server itself. This way if in the future it receives
+a token inside the `Authorization: Bearer <token>` header and can decode
+it, the server can be sure that this token has been issued by this server, and
+the user data contained in the token payload is valid. The token can also have
+an expiration date or be valid indefinitely. JWT only works over secure
+connections.
+
+### Plan of action
+
+- add dummy `auth` service to the system and return hardcoded result (200 or 401)
+- update nginix.conf to require `auth_jwt` to see if it works
+- add login functionality in `auth` service (mock users table with CSV file and
+  generate JWT)
+- store JWT as a cookie, so it's sent automatically with every request
+- figure out how SSL certificates fit in here
+- add user registration functionality
+- integrate with external provider to manage users, roles and auth methods
+
+#### Footnotes
 
 \[¹\] This just means that it controls access from the Internet to a computer,
 rather than from computer to the Internet, the way a direct proxy does.
