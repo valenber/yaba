@@ -54,7 +54,7 @@ connections.
 ### Plan of action
 
 - add dummy `auth` service to the system and return hardcoded result (200 or 401)
-- update nginix.conf to require `auth_jwt` to see if it works
+- update nginx.conf to require `auth_jwt` to see if it works
 - add login functionality in `auth` service (mock users table with CSV file and
   generate JWT)
 - store JWT as a cookie, so it's sent automatically with every request
@@ -62,7 +62,32 @@ connections.
 - add user registration functionality
 - integrate with external provider to manage users, roles and auth methods
 
----
+## 10/12/2023
+
+### TIL auth_jwt directive does not work in OSS version of Nginx
+
+I was hoping to use it in my ingress, but it is not available in free
+version of nginx. There is a commercial version called Nginx Plus that
+allows to configure JWT auth in this way, but with the open-source version
+I will need another approach.
+
+### Plan of action
+
+- add `login` service that will consult DB and generate/store JWT token
+  - we want to store in in a cookie with strict same-site policy
+  - we can start with CVS file instead of DB
+- add `auth proxy` service that will read JWT from cookies and validate it
+  - in order to validate created JWT we need to share a key between services
+- add `auth_request` and `error_page` directives to nginx ingress
+- add user registration functionality
+
+### Still to figure out
+
+- how SSL certificates fit in here
+
+______________________________________________________________________
+
 #### Footnotes
+
 - <sup>1</sup> Reverse proxy just means that it controls access from the Internet to a computer,
-rather than from a computer to the Internet, the way a direct proxy does.
+  rather than from a computer to the Internet, the way a direct proxy does.
