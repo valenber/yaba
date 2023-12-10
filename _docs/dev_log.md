@@ -35,7 +35,7 @@ integrate and has a generous free tier.
 I'm going to add authentication to the app. It seems that the most sensible
 approach is to protect the whole app at the ingress level. It will take care of
 all the current services and the ones we may implement in the future.
-To do this the nginx that we use as reverse proxy\[¹\](# note 1) before forwarding
+To do this the nginx that we use as _reverse proxy_<sup>1</sup> before forwarding
 requests to corect service has to consult the new `auth` service, that will
 determine if the request is authenticated or not. When ingress receives OK from
 the `auth` service in will forward the request following the rules in
@@ -62,7 +62,7 @@ connections.
 - add user registration functionality
 - integrate with external provider to manage users, roles and auth methods
 
+---
 #### Footnotes
-
-\[¹\] This just means that it controls access from the Internet to a computer,
-rather than from computer to the Internet, the way a direct proxy does.
+- <sup>1</sup> Reverse proxy just means that it controls access from the Internet to a computer,
+rather than from a computer to the Internet, the way a direct proxy does.
