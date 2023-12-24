@@ -5,7 +5,7 @@ project.
 
 ## 08/12/2023
 
-### TIL how to connect containers together using docker compose and nginx
+### Learn how to connect containers together using docker compose and nginx
 
 I used one nginx service to route the requests, another one to serve the web
 client, and in the third service I ran a node app that exposed an endpoint. The
@@ -24,7 +24,7 @@ exchange-service. Which is one of the endpoints it exposes.
 
 On a different topic, I tried to do local development using docker containers to
 be closer to the production environment, but failed. I think for now I will
-stick with the normal dev servers options.
+stick with the normal dev server options.
 
 I added a call to [freecurrencyapi](https://freecurrencyapi.com/) inside the
 `exchange-service` to fetch exchange rates for currencies. It was very easy to
@@ -64,9 +64,9 @@ connections.
 
 ## 10/12/2023
 
-### TIL auth_jwt directive does not work in OSS version of Nginx
+### auth_jwt directive does not work in FOSS version of Nginx
 
-I was hoping to use it in my ingress, but it is not available in free
+I was hoping to use `auth_jwt` in my ingress, but it is not available in free
 version of nginx. There is a commercial version called Nginx Plus that
 allows to configure JWT auth in this way, but with the open-source version
 I will need another approach.
@@ -85,7 +85,14 @@ I will need another approach.
 
 - how SSL certificates fit in here
 
-______________________________________________________________________
+## 18/12/2023 - 24/12/2023
+
+I made a few attempts to design the authentication service, but realized I
+miss some key knowledge about the topic. After studying a bit of theory,
+reviewing several solutions and going through a few tutorials, I decided
+to try to build my own implementations using a combination of NestJS and ReactJS.
+
+I have set up a monorepo (Turbo) that combies the two projects: React (using Vite) for the UI that will display registration and login forms and NestJS for the API that will handle user and JWT validation.
 
 #### Footnotes
 
