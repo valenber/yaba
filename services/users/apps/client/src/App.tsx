@@ -1,5 +1,5 @@
 import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import viteLogo from "./assets/vite.svg";
 import "./App.css";
 import { useEffect, useState } from "react";
 
@@ -7,7 +7,10 @@ function App() {
   const [welcome, setWelcome] = useState("Hey there!");
 
   useEffect(() => {
-    fetch("/api")
+    const baseApiUrl =
+      process.env.NODE_ENV === "production" ? "/users/api" : "/api";
+
+    fetch(baseApiUrl)
       .then((res) => res.text())
       .then(setWelcome);
   }, []);

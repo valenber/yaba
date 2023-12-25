@@ -18,3 +18,5 @@ services:
   web-client:
     build: ./clients/web
 
+  users-service:
+    build: ./services/users

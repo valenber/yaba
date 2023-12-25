@@ -92,9 +92,18 @@ miss some key knowledge about the topic. After studying a bit of theory,
 reviewing several solutions and going through a few tutorials, I decided
 to try to build my own implementations using a combination of NestJS and ReactJS.
 
-I have set up a monorepo (Turbo) that combies the two projects: React (using Vite) for the UI that will display registration and login forms and NestJS for the API that will handle user and JWT validation.
+I have set up a monorepo (Turbo) that combies the two projects:
+React (using Vite) for the UI that will display registration and login forms
+and NestJS for the API that will handle user and JWT validation.
 
-#### Footnotes
+## 25/12/2023
+
+Today I integrated new users service that will be used for login and
+registration into the rest of the system. It took some time for me to figure out
+how to configure location for nginx and baseURL for the service itself so it
+would work correctly in production and development mode.
+
+### Footnotes
 
 - <sup>1</sup> Reverse proxy just means that it controls access from the Internet to a computer,
   rather than from a computer to the Internet, the way a direct proxy does.
